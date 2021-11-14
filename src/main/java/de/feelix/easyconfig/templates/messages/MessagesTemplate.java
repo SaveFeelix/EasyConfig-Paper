@@ -47,22 +47,19 @@ public abstract class MessagesTemplate extends PluginConfig {
      */
     public MessagesTemplate(@NotNull JavaPlugin plugin, @NotNull String folderName, @Nullable String prefixVariable) {
         super(plugin, folderName, "messages");
+        addDefaultMessages();
         this.prefixVariable = Objects.requireNonNull(prefixVariable, "%prefix%");
     }
 
-    @Override
-    public void addDefault() {
+    /**
+     * Method to add the default Messages
+     */
+    private void addDefaultMessages() {
         this.add("prefix", plugin.getName() + " §7>>");
         this.add("load", "%prefix% §6Plugin load§7...");
         this.add("enable", "%prefix% §aPlugin enabled");
         this.add("disable", "%prefix% §cPlugin disabled");
-        addOtherMessages();
     }
-
-    /**
-     * Abstract method to add other Default values
-     */
-    public abstract void addOtherMessages();
 
     /**
      * Getter for the Prefix
