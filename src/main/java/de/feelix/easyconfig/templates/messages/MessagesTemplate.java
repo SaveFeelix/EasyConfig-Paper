@@ -47,7 +47,7 @@ public abstract class MessagesTemplate extends PluginConfig {
      */
     public MessagesTemplate(@NotNull JavaPlugin plugin, @NotNull String folderName, @Nullable String prefixVariable) {
         super(plugin, folderName, "messages");
-        this.prefixVariable = Objects.requireNonNull(prefixVariable, "%prefix%");
+        this.prefixVariable = prefixVariable != null ? prefixVariable : "%prefix%";
         addDefaultMessages();
     }
 
@@ -114,6 +114,6 @@ public abstract class MessagesTemplate extends PluginConfig {
      * @return the DisableMessage as a String
      */
     public String getDisableString() {
-        return TextUtils.checkOther(this.getFromConfig("disable"), "%prefix%", this.getPrefix()).asString();
+        return TextUtils.checkOther(this.getFromConfig("disable"), prefixVariable, this.getPrefix()).asString();
     }
 }
