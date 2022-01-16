@@ -102,11 +102,11 @@ public abstract class LocationTemplate extends PluginConfig {
         root = root.toLowerCase(Locale.ROOT);
         String worldName = this.getFromConfig(root + ".world");
         World world = Bukkit.getWorld(worldName);
-        double x = this.<Double>getFromConfig(root + ".x"),
-                y = this.<Double>getFromConfig(root + ".y"),
-                z = this.<Double>getFromConfig(root + ".z");
-        float yaw = this.<Float>getFromConfig(root + ".yaw"),
-                pitch = this.<Float>getFromConfig(root + ".pitch");
+        double x = this.getFromConfig(root + ".x"),
+                y = this.getFromConfig(root + ".y"),
+                z = this.getFromConfig(root + ".z");
+        float yaw = (float)this.configuration.getDouble(root + ".yaw"),
+                pitch = (float)this.configuration.getDouble(root + ".pitch");
         return withYawAndPitch ? new Location(world, x, y, z, yaw, pitch) : new Location(world, x, y, z);
     }
 }
